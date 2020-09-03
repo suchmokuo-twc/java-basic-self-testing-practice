@@ -19,14 +19,14 @@ class IntegerTypeTest {
         final double result1 = 2 / 3 * 5;
         final double result2 = 2 * 5 / 3;
 
-        // TODO:
-        //  please modify the following lines to pass the test.
+        // please modify the following lines to pass the test.
         //
         // Hint:
-        //  If you want some reference please see page 59 of "Core Java Vol 1", section 3.5.2.
+        // If you want some reference please see page 59 of "Core Java Vol 1", section
+        // 3.5.2.
         // <!--start
-        final double expectedResult1 = Double.NaN;
-        final double expectedResult2 = Double.NaN;
+        final double expectedResult1 = 0;
+        final double expectedResult2 = 3;
         // --end-->
 
         assertEquals(expectedResult1, result1, +1.0E-05);
@@ -36,12 +36,12 @@ class IntegerTypeTest {
     @Test
     void should_truncate_number_when_casting() {
         final int integer = 0x0123_4567;
-        final short smallerInteger = (short)integer;
+        final short smallerInteger = (short) integer;
 
-        // TODO:
-        //  please modify the following lines to pass the test. Please refer to page 60 of "Core Java Vol 1", section 3.5.3.
+        // please modify the following lines to pass the test. Please refer to page 60
+        // of "Core Java Vol 1", section 3.5.3.
         // <!--start
-        final short expected = 0;
+        final short expected = 0x4567;
         // --end-->
 
         assertEquals(expected, smallerInteger);
@@ -53,12 +53,11 @@ class IntegerTypeTest {
 
         int result = integer++;
 
-        // TODO:
-        //  please modify the following code to pass the test. You should write the
-        //  result directly.
+        // please modify the following code to pass the test. You should write the
+        // result directly.
         // <--start
-        final int expectedCurrentInteger = 0;
-        final int expectedResult = 0;
+        final int expectedCurrentInteger = 4;
+        final int expectedResult = 3;
         // --end-->
 
         assertEquals(expectedCurrentInteger, integer);
@@ -71,12 +70,11 @@ class IntegerTypeTest {
 
         int result = ++integer;
 
-        // TODO:
-        //   please modify the following code to pass the test. You should write the
-        //   result directly.
+        // please modify the following code to pass the test. You should write the
+        // result directly.
         // <--start
-        final int expectedCurrentInteger = 0;
-        final int expectedResult = 0;
+        final int expectedCurrentInteger = 4;
+        final int expectedResult = 4;
         // --end-->
 
         assertEquals(expectedCurrentInteger, integer);
@@ -84,14 +82,20 @@ class IntegerTypeTest {
     }
 
     private int add(int left, int right) {
-        // TODO:
-        //  Please implement the method. Adding two numbers. This method should throw
-        //  ArithmeticException if overflow or underflow happens.
+        // Please implement the method. Adding two numbers. This method should throw
+        // ArithmeticException if overflow or underflow happens.
         //
         // Hint
-        //  Java library contains method to do this. If you meet some difficulties
-        //  here please refer to the following document:
-        //  https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#addExact-int-int-
-        throw new RuntimeException("Not implemented");
+        // Java library contains method to do this. If you meet some difficulties
+        // here please refer to the following document:
+        // https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#addExact-int-int-
+
+        if (left > 0 && right > 0 && left > Integer.MAX_VALUE - right) {
+            throw new ArithmeticException("overflow");
+        } else if (left < 0 && right < 0 && left < Integer.MIN_VALUE - right) {
+            throw new ArithmeticException("underflow");
+        }
+
+        return left + right;
     }
 }

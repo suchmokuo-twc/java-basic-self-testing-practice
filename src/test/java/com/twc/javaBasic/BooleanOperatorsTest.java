@@ -26,12 +26,22 @@ class BooleanOperatorsTest {
       4 != 5
     };
 
-    // TODO:
-    //  please write your answers directly(modify the value of expectedResult to equal actualResults).
-    //
-    // <--start
-    boolean[] expectedResult = {};
-    // --end-->
+    boolean[] expectedResult = {
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true
+    };
 
     assertArrayEquals(expectedResult, actualResults);
   }

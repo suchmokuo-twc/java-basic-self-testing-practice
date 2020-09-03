@@ -1,6 +1,6 @@
 package com.twc.javaBasic;
 
-@SuppressWarnings({"unused", "FieldCanBeLocal"})
+@SuppressWarnings({ "unused", "FieldCanBeLocal" })
 public class MyStack {
     private int[] storage;
     private int capacity;
@@ -22,23 +22,20 @@ public class MyStack {
             ensureCapacity();
         }
 
-        // TODO: Please push the value into the storage here.
-        // <--start
-
-        // --end-->
+        storage[count++] = value;
     }
 
     private void ensureCapacity() {
         int newCapacity = capacity * GROW_FACTOR;
 
-        // TODO:
-        //  Please create a new array of size newCapacity. Copy the original values into The new
-        //  array, and update related fields.
-        //  IMPORTANT: You SHOULD NOT USE COLLECTIONS (such as List<T>) OTHER THAN ARRAY.
-        //
-        // <--start
+        int[] newStorage = new int[newCapacity];
 
-        // --end-->
+        for (int i = 0; i < capacity; i++) {
+            newStorage[i] = storage[i];
+        }
+
+        capacity = newCapacity;
+        storage = newStorage;
     }
 
     public int[] popToArray() {
@@ -53,13 +50,11 @@ public class MyStack {
     }
 
     private int pop() {
-        // TODO:
-        //  Please pop one element from the array. You should update the `count` field
-        //  as well.
-        // <--start
+        if (count == 0) {
+            throw new UnsupportedOperationException("Stack is empty.");
+        }
 
-        // --end-->
-
-        throw new UnsupportedOperationException("Stack is empty.");
+        int value = storage[--count];
+        return value;
     }
 }

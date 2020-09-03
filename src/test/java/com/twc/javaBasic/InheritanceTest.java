@@ -10,11 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class InheritanceTest {
     @Test
     void should_be_derived_from_object_class() {
-        // TODO:
-        //  Please write down the class type directly.
+        // Please write down the class type directly.
         //
         // <--start
-        final Class<?> expectedSuperClass = null;
+        final Class<?> expectedSuperClass = Object.class;
         // --end-->
 
         assertEquals(expectedSuperClass, SimpleEmptyClass.class.getSuperclass());
@@ -24,12 +23,12 @@ class InheritanceTest {
     void should_call_super_class_constructor() {
         DerivedFromSuperClassWithDefaultConstructor instance = new DerivedFromSuperClassWithDefaultConstructor();
 
-        // TODO:
-        //  You should write the answer directly.
+        // You should write the answer directly.
         // Hint: check https://beginnersbook.com/2013/03/constructors-in-java/
         //
         // <--start
-        final String[] expected = {};
+        final String[] expected = { "SuperClassWithDefaultConstructor.constructor()",
+                "DerivedFromSuperClassWithDefaultConstructor.constructor()" };
         // --end-->
 
         String[] logs = instance.getLogs();
@@ -37,17 +36,15 @@ class InheritanceTest {
         assertArrayEquals(expected, logs);
     }
 
-
-
     @Test
     void should_call_most_derived_methods() {
         BaseClassForOverriding instance = new DerivedFromBaseClassForOverriding();
 
-        // TODO:
-        //  You should write the answer directly.
-        // Hint: https://beginnersbook.com/2014/01/method-overriding-in-java-with-example/
+        // You should write the answer directly.
+        // Hint:
+        // https://beginnersbook.com/2014/01/method-overriding-in-java-with-example/
         // <--start
-        final String expectedName = "";
+        final String expectedName = "DerivedFromBaseClassForOverriding";
         // --end-->
 
         assertEquals(expectedName, instance.getName());
@@ -57,9 +54,8 @@ class InheritanceTest {
     void should_call_super_class_methods() {
         DerivedFromBaseClassForOverridingCallingSuper instance = new DerivedFromBaseClassForOverridingCallingSuper();
 
-        // TODO: You should write the answer directly.
         // <--start
-        final String expectedName = "";
+        final String expectedName = "BaseClassForOverriding->DerivedFromBaseClassForOverridingCallingSuper";
         // --end-->
 
         assertEquals(expectedName, instance.getName());
